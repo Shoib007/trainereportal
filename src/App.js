@@ -11,10 +11,11 @@ import Logout from './pages/Logout';
 function App() {
   const auth = useContext(AuthContext);
   return (
-    <div style={{display:'flex'}}>
-      
-      <Router>
+    
+    <Router>
+        <div style={{display:'flex', height:'100vh'}}>
         {auth.is_Authenticated && <Sidebar />}
+        <div style={{flex:1, overflowY:'auto', height:'100vh'}}>
         <Routes>
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/' element={<LoginPage/>}/>
@@ -22,8 +23,9 @@ function App() {
           <Route path='/logout' element={<Logout/>}/>
           <Route path='*' element={<PageNotFound/>}/>
         </Routes>
-      </Router>
+      </div>
     </div>
+      </Router>
   );
 }
 

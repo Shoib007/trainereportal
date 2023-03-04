@@ -151,7 +151,7 @@ export default function Dashboard() {
                       <div className="card-body">
                         <h5 className="card-title mb-3">{tData.schoolName}</h5>
                         <h6 className="card-subtitle fw-bold mb-2">{tData.trainerName}</h6>
-                        <p className='card-subtitle'>a</p>
+                        <p className='card-subtitle'>{tData.subject}</p>
                       </div>
                       <div className='card-body text-bg-dark'>
                         <div className='row d-flex align-items-center'>
