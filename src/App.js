@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Sidebar from './Navbar'
+import Dashboard from './pages/Dashboard';
+import LoginPage from './pages/LoginPage';
+import { AuthContext } from './authFolder/AuthContext';
+import PageNotFound from './pages/PageNotFound';
+import Profile from './pages/Profile';
+import Logout from './pages/Logout';
 
 function App() {
+  const auth = useContext(AuthContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{display:'flex'}}>
+      
+      <Router>
+        {auth.is_Authenticated && <Sidebar />}
+        <Routes>
+          <Route path='/dashboard' element={<Dashboard/>} />
+          <Route path='/' element={<LoginPage/>}/>
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/logout' element={<Logout/>}/>
+          <Route path='*' element={<PageNotFound/>}/>
+        </Routes>
+      </Router>
     </div>
   );
 }
