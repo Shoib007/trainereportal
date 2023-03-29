@@ -61,6 +61,7 @@ export default function LoginPage() {
 
         //Sending the login credientials to the server
         // Have to this long method of axios in order to get the cookies in browser
+        
         await axios({
             method: 'post',
             withCredentials: true,
@@ -72,7 +73,7 @@ export default function LoginPage() {
             }
         })
             .then(() => {
-                axios.get('http://localhost:8000/login',{ withCredentials: true }) // Here I'll get the user details from Django Server
+                axios.get('http://localhost:8000/login', { withCredentials: true }) // Here I'll get the user details from Django Server
                     .then(res => {
                         console.log(res.data);
                         if (res.data.is_staff) {

@@ -22,6 +22,7 @@ export default function AuthProvider(prop) {
                 if (e.message === 'Network Error') {
                     setNetworkError(true);
                 } else {
+                    setAuthentication(false);
                     console.log(e.message);
                 }
             })
@@ -29,7 +30,7 @@ export default function AuthProvider(prop) {
 
     useEffect(() => {
         updateAuth();
-    })
+    },[])
 
     return (
         <AuthContext.Provider value={{ is_Authenticated, updateAuth, networkError }}>

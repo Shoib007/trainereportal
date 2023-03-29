@@ -20,8 +20,6 @@ export default function Dashboard() {
   const updateTraining = (e) => {
     axios.put(`${BASE_URL}/trainingUpdate/${curKey}`, { 'state': e.target.value })
       .then((res) => {
-        console.log(res);
-
         axios.get(`${BASE_URL}/training/${userId ? userId.id : null}`)
           .then((response) => {
             setTrainingData(response.data);
@@ -163,7 +161,7 @@ export default function Dashboard() {
                           <div className="col-6">
                             <select className="form-select text-bg-dark" onClick={() => setCurKey(tData.id)} onChange={(e) => updateTraining(e)} aria-label="Default select example" name='state'>
                               <option value='none' hidden>Status</option>
-                              <option value="pending">On Going</option>
+                              <option value="On Going">On Going</option>
                               <option value="completed">Completed</option>
                             </select>
                           </div>
