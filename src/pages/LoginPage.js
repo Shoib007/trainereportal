@@ -5,6 +5,7 @@ import React, { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../authFolder/AuthContext';
+import { BASE_URL } from '../BaseUrl';
 
 export default function LoginPage() {
     const auth = useContext(AuthContext);
@@ -33,13 +34,13 @@ export default function LoginPage() {
             };
         }
 
-        let num = randomNumber();
+        // let num = randomNumber();
         fetch("https://type.fit/api/quotes")
             .then(function (response) {
                 return response.json();
             })
             .then(function (data) {
-                setQuest(data[num])
+                setQuest(data[1])
             });
     }, [staff])
 
@@ -65,7 +66,7 @@ export default function LoginPage() {
         await axios({
             method: 'post',
             withCredentials: true,
-            url: 'http://localhost:8000/login',
+            url: `${BASE_URL}/login`,
             data: loginData,
             headers: {
                 'Content-Type': 'application/json',
@@ -73,7 +74,7 @@ export default function LoginPage() {
             }
         })
             .then(() => {
-                axios.get('http://localhost:8000/login', { withCredentials: true }) // Here I'll get the user details from Django Server
+                axios.get(`${BASE_URL}/login`, { withCredentials: true }) // Here I'll get the user details from Django Server
                     .then(res => {
                         console.log(res.data);
                         if (res.data.is_staff) {
@@ -88,9 +89,9 @@ export default function LoginPage() {
                             auth.updateAuth();
                             history("/dashboard")
                         }
-                    }).catch(e => console.log(e.response.data))
+                    }).catch(e => console.log(e.response.data));
             })
-            .catch(e => console.log(e.response.data))
+            .catch(e => console.log(e.response.data));
     }
 
     if (!staff && auth.is_Authenticated) {

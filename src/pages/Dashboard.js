@@ -42,7 +42,7 @@ export default function Dashboard() {
     return trainigData.filter(training => (
       ((!selectedDate || training.TrainingDate >= selectedDate) &&
       (!endingDate || training.TrainingDate <= endingDate) &&
-      (!state || training.state === state)) || training.state === 'pending'
+      (!state || training.state === state)) || training.state === 'On Going'
     ));
   }, [selectedDate, endingDate, state, trainigData]);
 
